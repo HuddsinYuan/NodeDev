@@ -1,0 +1,151 @@
+<!--重构代码-->
+<!--一份代码文件里只保存一个类型的东西-->
+<!--视图-->
+<!--模板-->
+<!--路由器-->
+<!--集合-->
+<!--模型-->
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>backbone日常练习</title>
+
+
+    <script src="jquery-1.9.0.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+
+    <script>
+        var app;
+        var appleData = [
+            {
+                name: "fuji",
+                url: "img/fuji.jpg"
+            },
+            {
+                name: "gala",
+                url: "img/gala.jpg"
+            }
+        ];
+
+        var Apples = Backbone.Collection.extend({});
+        var router = Backbone.Router.extend({
+            routes: {
+                '': 'home',
+                'apples/:appleName': 'loadApple'
+            },
+            initialize: function () {
+                // 一些在对象初始化的时候执行的代码,router的构造函数
+                var apples = new Apples();
+                apples.reset(appleData);
+                this.homeView = new homeView({collection: apples});
+                this.appleView = new appleView({collection: apples});
+            },
+            home: function () {
+                this.homeView.render();
+            },
+            loadApple: function (appleName) {
+                this.appleView.loadApple(appleName);
+            }
+        });
+
+        var appleItemView = Backbone.View.extend({
+            tagName: 'li',
+            template: _.template('\
+             <a href="#apples/<%=name%>" target="_blank">\
+            <%=name%>\
+            </a>&nbsp;<a class="add-to-cart" href="#">buy</a>\
+            '),
+            events: {
+                'click .add-to-cart': 'addToCart' // 事件 + jQuery选择器: 函数名
+            },
+            render: function () {
+                this.$el.html(this.template(this.model.attributes));
+            },
+            addToCart: function () {
+                this.model.collection.trigger('addToCart', this.model);
+            }
+        });
+
+        var homeView = Backbone.View.extend({
+            el: 'body',
+            listE1: '.apples-list',
+            cartE1: '.cart-box',
+            template: _.template('Apple data: \
+                <ul class="apples-list">\
+                </ul> \
+                <div class="cart-box"></div>'),
+            initialize: function () {
+                this.$el.html(this.template);
+                this.collection.on('addToCart', this.showCart, this);
+            },
+            showCart: function (appleModel) {
+                $(this.cartE1).append(appleModel.attributes.name + "<br/>");
+            },
+            render: function () {
+                view = this;
+                this.collection.each(function (apple) {
+                    var appleSubView = new appleItemView({model: apple});
+                    appleSubView.render();
+                    $(view.listE1).append(appleSubView.$el);
+                });
+            }
+
+        });
+
+        var appleView = Backbone.View.extend({
+            initialize: function () {
+                //模型改变的时候调用render
+                this.model = new (Backbone.Model.extend({}));
+                this.model.bind('change', this.render, this);
+                //事件spinner触发 调用showSpinner方法
+                this.bind('spinner', this.showSpinner, this);
+            },
+
+            //创建一个GIF图标属性
+            templateSpinner: '<img src="img/spinner.gif" width="30"/>',
+
+            //创建模板 可以使得内容以如下形式来得到形式
+            template: _.template(
+                    '<figure>\
+                        <img src="<%= attributes.url%>"/>\
+                        <figcaption><%=attributes.name%></figcaption> \
+                     </figure>'),
+
+            loadApple: function (appleName) {
+                this.trigger('spinner');
+                var view = this; //设定作用域,需要在闭包内访问VIEW
+                setTimeout(function () {
+                    view.model.set(view.collection.where({
+                        name: appleName
+                    })[0].attributes);
+                }, 1000);
+            },
+
+            render: function (appleName) {
+                var appleHtml = this.template(this.model);
+                $('body').html(appleHtml);
+            },
+
+            showSpinner: function () {
+                $('body').html(this.templateSpinner);
+            }
+        });
+
+
+        //开始使用类似jQuery的ready函数 这边利用传统的JQuery的方式并不行
+        $(function () {
+            app = new router;
+            Backbone.history.start();
+        });
+
+    </script>
+</head>
+
+<body>
+
+<div></div>
+</body>
+</html>
