@@ -1,4 +1,5 @@
 /*! jQuery v1.7.1 jquery.com | jquery.org/license */
+/*! jQuery v1.7.1 jquery.com | jquery.org/license */
 (function( window, undefined ) {
 
 // Use the correct document accordingly with window argument (sandbox)

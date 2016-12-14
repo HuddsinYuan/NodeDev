@@ -17,6 +17,9 @@ function Post(username, post, time) {
 
 module.exports = Post;
 
+/*
+    callback会最多传回两个参数 err post两个参数
+ */
 Post.prototype.save = function save(callback) {
     var post = {
         user: this.user,
