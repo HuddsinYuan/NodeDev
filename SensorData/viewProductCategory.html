@@ -1,0 +1,223 @@
+<script src='./Chart.bundle.js'></script>
+<script src='./utils.js'></script>
+<script src='./jquery_2_1_4.js'></script>
+<script src='./bootstrap.min.js'></script>
+<link rel="stylesheet" href="./bootstrap.min.css">
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -webkit-align-content: center;
+    }
+</style>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+    
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Sensors</h1>
+        <div class="btn-group" role="group" aria-label="...">
+            <button id="GetAData" type="button" class="btn btn-default btn-lg">Bedroom</button>
+            <button id="GetBData" type="button" class="btn btn-default btn-lg">Living Room</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <canvas id="canvas" height="120%"></canvas>
+</div>
+
+<script>
+    function showChart() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = Chart.Line(ctx, {
+            data: lineChartData,
+            options: {
+                responsive: true,
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: true,
+                    text: 'Info'
+                },
+                scales: {
+                    yAxes: [{
+                        type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "left",
+                        id: "axis-temperature"
+                    }, {
+                        type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "right",
+                        id: "axis-humidity",
+
+                        // grid line settings
+                        gridLines: {
+                            drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        },
+                    }],
+                }
+            }
+        });
+
+        window.myLine.update();
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "./sensordata.csv",
+            dataType: "text",
+            success: function (data) {
+                processData(data);
+            }
+        });
+
+    });
+    var timeLabels;
+    var humidityDatas;
+    var temperatureDatas;
+
+    var firstsensortimeLabels = [];
+    var firstsensortemperatureDatas = [];
+    var firstsensorhumidityDatas = [];
+
+    var secondsensortimeLabels = [];
+    var secondsensortemperatureDatas = [];
+    var secondsensorhumidityDatas = [];
+
+    var lineChartData;
+
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var totalrecord = allTextLines.length;
+        var last100Lines = allTextLines.slice(totalrecord - 96);
+        for (var i = 1; i < last100Lines.length; i++) {
+            var data = last100Lines[i].split(',');
+            if (data.length == 6) {
+                if (data[1] == 'ABCD') {
+                    var b = data[5].slice(13,16);
+                    var c = data[5].slice(11,13);
+                    c = (parseInt(c) + 8)%24;
+                    firstsensortimeLabels.push(c + b);
+                    firstsensortemperatureDatas.push(data[2]);
+                    firstsensorhumidityDatas.push(data[3]);
+                }
+                else if (data[1] == 'WXYZ') {
+                    var b = data[5].slice(13,16);
+                    var c = data[5].slice(11,13);
+                    c = (parseInt(c) + 8)%24;
+                    secondsensortimeLabels.push(c + b);
+                    secondsensortemperatureDatas.push(data[2]);
+                    secondsensorhumidityDatas.push(data[3]);
+                }
+            }
+        }
+    }
+
+    document.getElementById('GetAData').addEventListener('click', function () {
+        timeLabels = firstsensortimeLabels;
+        humidityDatas = firstsensorhumidityDatas;
+        temperatureDatas = firstsensortemperatureDatas;
+        lineChartData = {
+            labels: timeLabels,
+            datasets: [{
+                label: "Temperature",
+                borderColor: window.chartColors.red,
+                backgroundColor: window.chartColors.red,
+                fill: false,
+                data: temperatureDatas,
+                yAxisID: "axis-temperature",
+            }, {
+                label: "Humidity",
+                borderColor: window.chartColors.blue,
+                backgroundColor: window.chartColors.blue,
+                fill: false,
+                data: humidityDatas, //randomfactor
+                yAxisID: "axis-humidity"
+            }]
+        };
+
+        showChart();
+    });
+
+    document.getElementById('GetBData').addEventListener('click', function () {
+        timeLabels = secondsensortimeLabels;
+        humidityDatas = secondsensorhumidityDatas;
+        temperatureDatas = secondsensortemperatureDatas;
+        lineChartData = {
+            labels: timeLabels,
+            datasets: [{
+                label: "Temperature",
+                borderColor: window.chartColors.red,
+                backgroundColor: window.chartColors.red,
+                fill: false,
+                data: temperatureDatas,
+                yAxisID: "axis-temperature",
+            }, {
+                label: "Humidity",
+                borderColor: window.chartColors.blue,
+                backgroundColor: window.chartColors.blue,
+                fill: false,
+                data: humidityDatas, //randomfactor
+                yAxisID: "axis-humidity"
+            }]
+        };
+        showChart();
+    });
+</script>
