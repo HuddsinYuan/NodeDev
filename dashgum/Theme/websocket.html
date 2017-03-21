@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="assets/js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.simple.websocket.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var socket = $.simpleWebSocket({
+            url: 'ws://127.0.0.1:5000',
+            protocols: '', // optional
+            timeout: 20000, // optional, default timeout between connection attempts
+            attempts: 60, // optional, default attempts until closing connection
+            dataType: 'text' // optional (xml, json, text), default json
+        });
+        $("#connect").click(function(e) {
+            socket.connect();
+        });
+
+
+        $("#sendtext").click(function(e) {
+            var word = document.getElementById('data').value;
+            socket.send(word);
+        });
+
+        $("#disconnect").click(function(e) {
+            socket.close();
+        });
+
+        socket.listen(function(data) {
+
+            var p = document.createElement('p');
+            p.innerHTML = data;
+            document.getElementById('output').appendChild(p);
+        });
+
+        // socket.remove(listenerCallback);
+
+        // socket.removeAll();
+
+    });
+    </script>
+</head>
+
+<body>
+    <div>
+        <input id="connect" type="button" value="Connect" /> </div>
+    <div>
+        <input id="disconnect" type="button" value="Close" /> </div>
+    <div id="output"></div>
+    <div id="send">
+        <input type="text" id="data" size="100" />
+        <br />
+        <input type="button" id="sendtext" value="Send Text" />
+    </div>
+</body>
+
+</html>
