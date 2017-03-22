@@ -73,7 +73,7 @@ module.exports = app;
 //server.listen(80);
 //
 //app.get('/', function (req, res) {
-//  res.sendfile(__dirname + '/client/index.html');
+//  res.sendfile(__dirname + '/client/dashboard.ejs');
 //});
 //
 //io.sockets.on('connection', function (socket) {
