@@ -16,7 +16,9 @@ router.post('/cmd', function (req, res, next) {
     var dataToFront = {
         finalstatus: 'Yes'
     };
-    exec(__dirname + '/../public/script/test.sh', function () {
+    cmdline = __dirname + '/../public/script/test.sh';
+    console.log(cmdline);
+    exec(cmdline, [dataFromFront.sensor, dataFromFront.command], function () {
         //promise waiting for call back
         res.json(dataToFront);
     });
