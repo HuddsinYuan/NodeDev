@@ -1,47 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bi-directional communication</title>
-  <script src = "http://localhost:3000/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io.connect('http://localhost:3000');
-    socket.on('connect', function () {
-        socket.emit('addme', prompt('who are you'));
-    })
-
-    socket.on('chat', function (username, data) {
-        var p = document.createElement('p');
-        p.innerHTML = username + ': ' + data;
-        document.getElementById('output').appendChild(p);
-    });
-
-    window.addEventListener('load', function () {
-        document.getElementById('sendtext').addEventListener('click', function () {
-            var text = document.getElementById('data').value;
-            socket.emit('sendchat',text);
-        },false);
-    },false);
-
-//
-//    socket.on('news', function (data) {
-//      var html = '<p>' + data.news + '</p>';
-//      document.getElementById("output").innerHTML = html;
-//      socket.emit('echo', { back: data.news});
-//    });
-//
-//    socket.on('message', function(data) {
-//      var html = '<p>' + data + '</p>';
-//      document.getElementById("output").innerHTML = html;
-//      socket.send('ok');
-//    })
-  </script>
+    <meta charset="UTF-8">
+    <title>Bi-directional communication</title>
+    <script src="/javascripts/jquery_2_1_4.js"></script>
+    <script src="/javascripts/cmd.js"></script>
 </head>
 <body>
-<div id="output" ></div>
+<div id="output"></div>
 <div id="send">
-    <input type="text" id="data" size="100" /> <br />
-    <input type="button" id="sendtext" value="Send Text" />
+    <button id="sendtext">CMD Button</button>
 </div>
 </body>
 </html>
