@@ -1,17 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bi-directional communication</title>
-    <script src="/javascripts/jquery_2_1_4.js"></script>
-    <script src="/javascripts/cmd.js"></script>
-</head>
-<body>
-<div id="output"></div>
-<h3>GPIO Status</h3>
-<div id="send">
-    <button id="btn_off_gpio">OFF Button</button>
-    <button id="btn_on_gpio">ON Button</button>
-</div>
-</body>
-</html>
+<% include layout %>
+
+<script src="/javascripts/cmd.js" xmlns:height="http://www.w3.org/1999/xhtml"></script>
+
+
+<section id="main-content">
+    <section class="wrapper">
+
+        <div class="row">
+            <div class="col-lg-9 main-chart">
+
+                <div class="row mt">
+                    <!-- SERVER STATUS PANELS -->
+                    <div class="col-md-6 col-sm-6 mb">
+                        <div class="darkblue-panel pn ">
+                            <div class="darkblue-header">
+                                <h5>IO Control Panel</h5>
+                            </div>
+                            <div class="row"></div>
+                            <div id="send" class="row mt">
+                                        <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2">
+                                            <button id="btn_off_gpio" type="button"
+                                                    class="btn btn-grey btn-circle btn-xl">OFF
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2">
+                                            <button id="btn_on_gpio" type="button"
+                                                    class="btn btn-grey btn-circle btn-xl">ON
+                                            </button>
+                                        </div>
+                            </div>
+                            <canvas id="serverstatus02" height="50" width="120"></canvas>
+                            <footer>
+                                <div class="pull-left">
+                                    <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
+                                </div>
+                                <div class="pull-right">
+                                    <h5>60% Used</h5>
+                                </div>
+                            </footer>
+                        </div><!--/grey-panel -->
+                    </div><!-- /col-md-4-->
+
+
+                    <div class="col-md-6 col-sm-6 mb">
+                        <div class="white-panel pn ">
+                            <div class="white-header">
+                                <h5>Air-Condition Control Panel</h5>
+                            </div>
+                            <div id="send" class="row mt">
+                                    <button type="button" class="btn btn-grey btn-circle btn-lg">开</button>
+                            </div>
+                            <div class="row mt">
+                                <div class="col-xs-6 col-sm-6">
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl">+</button>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl">-</button>
+                                </div>
+                            </div>
+                            <footer>
+                                <div class="pull-left">
+                                    <h5><i class="fa fa-th"></i>  Temperature</h5>
+                                </div>
+                                <div class="pull-right">
+                                    <h5>27</h5>
+                                </div>
+                            </footer>
+                         </div><!--/grey-panel -->
+                    </div><!-- /col-md-4-->
+                </div><!-- /row -->
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 mb">
+                        <div class="darkblue-panel pn ">
+                            <div class="darkblue-header">
+                                <h5>TV Control Panel</h5>
+                            </div>
+                            <div id="send" class="row mt">
+                                <button type="button" class="btn btn-grey btn-circle btn-lg">开</button>
+                            </div>
+                            <div class="row mt">
+                                <div class="col-xs-6 col-sm-6">
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl">+</button>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl">-</button>
+                                </div>
+                            </div>
+                            <footer>
+                                <div class="pull-left">
+                                    <h5><i class="glyphicon glyphicon-signal "></i>  TV Channel</h5>
+                                </div>
+                                <div class="pull-right">
+                                    <h5>60</h5>
+                                </div>
+                            </footer>
+                        </div><!--/grey-panel -->
+                    </div><!-- /col-md-4-->
+
+                    <div class="col-md-6 col-sm-6 mb">
+                        <div class="white-panel pn">
+                            <div class="white-header">
+                                <h5>Some NEW Functions...</h5>
+                            </div>
+                            <h1>to be continue</h1>
+                        </div><!-- /darkblue panel -->
+                    </div><!-- /col-md-4 -->
+
+
+                    <!--<div class="col-md-6 mb">-->
+                        <!--&lt;!&ndash; INSTAGRAM PANEL &ndash;&gt;-->
+                        <!--<div class="instagram-panel pn">-->
+                            <!--<i class="fa fa-instagram fa-4x"></i>-->
+                            <!--<p>@THISISYOU<br/>-->
+                                <!--5 min. ago-->
+                            <!--</p>-->
+                            <!--<p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>-->
+                        <!--</div>-->
+                    <!--</div>&lt;!&ndash; /col-md-4 &ndash;&gt;-->
+
+                    <!--<div class="col-md-4 col-sm-4 mb">-->
+                    <!--&lt;!&ndash; REVENUE PANEL &ndash;&gt;-->
+                    <!--<div class="darkblue-panel pn">-->
+                    <!--<div class="darkblue-header">-->
+                    <!--<h5>REVENUE</h5>-->
+                    <!--</div>-->
+                    <!--<div class="chart mt">-->
+                    <!--<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>-->
+                    <!--</div>-->
+                    <!--<p class="mt"><b>$ 17,980</b><br/>Month Income</p>-->
+                    <!--</div>-->
+                    <!--</div>&lt;!&ndash; /col-md-4 &ndash;&gt;-->
+
+                </div><!-- /row -->
+
+
+            </div>
+
+            <!-- **********************************************************************************************************************************************************
+            RIGHT SIDEBAR CONTENT
+            *********************************************************************************************************************************************************** -->
+
+            <div class="col-lg-3 ds">
+                <!--COMPLETED ACTIONS DONUTS CHART-->
+
+                <!-- CALENDAR-->
+                <div id="calendar" class="mb">
+                    <div class="panel darkblue-panel no-margin">
+                        <div class="panel-body">
+                            <div id="date-popover" class="popover top"
+                                 style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                <div class="arrow"></div>
+                                <h3 class="popover-title" style="disadding: none;"></h3>
+                                <div id="date-popover-content" class="popover-content"></div>
+                            </div>
+                            <div id="my-calendar"></div>
+                        </div>
+                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+
+                </div><!-- / calendar -->
+
+            </div><!-- /col-lg-3 -->
+        </div><!--/row -->
+    </section>
+</section>

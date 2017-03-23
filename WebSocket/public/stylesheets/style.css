@@ -257,7 +257,7 @@ ul.top-menu > li > .logout {
     height:17px;
     width:17px;
     display:inline-block;
-    background: url("../img/nav-expand.png") no-repeat top;
+    background: url("../images/nav-expand.png") no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -266,7 +266,7 @@ ul.top-menu > li > .logout {
     top:15px;
 }
 .active .dcjq-icon {
-    background: url("../img/nav-expand.png") no-repeat bottom;
+    background: url("../images/nav-expand.png") no-repeat bottom;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -696,7 +696,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .log-arrow-up {
-    background: url("../img/arrow-up.png") no-repeat;
+    background: url("../images/arrow-up.png") no-repeat;
     width: 20px;
     height: 11px;
     position: absolute;
@@ -1048,8 +1048,8 @@ PANELS CONFIGURATIONS
 	color: white;
 }
 .darkblue-panel footer h5 {
-	margin-left:10px; 
-	margin-right: 10px;
+	margin-left:10px;
+    margin-right: 10px;
 	font-weight: 700;
 }
 
@@ -1103,6 +1103,14 @@ PANELS CONFIGURATIONS
 	color: #68dff0;
 	padding-right: 4px;
 	font-size: 14px;
+}
+.white-panel footer {
+    color: dimgrey;
+}
+.white-panel footer h5 {
+    margin-left:10px;
+    margin-right: 10px;
+    font-weight: 700;
 }
 
 /*STOCK CARD Panel*/
@@ -1167,7 +1175,7 @@ PANELS CONFIGURATIONS
 
 /* Weather 1 */
 .weather {
-	background: url(../img/weather.jpg) no-repeat center top;
+	background: url(../images/weather.jpg) no-repeat center top;
 	text-align: center;
 	background-position: center center;
 }
@@ -1274,7 +1282,7 @@ PANELS CONFIGURATIONS
 
 /* Instagram Panel*/
 .instagram-panel {
-	background: url(../img/instagram.jpg) no-repeat center top;
+	background: url(../images/instagram.jpg) no-repeat center top;
 	text-align: center;
 	background-position: center center;
 }
@@ -1318,7 +1326,7 @@ PANELS CONFIGURATIONS
 
 /* Soptify Panel */
 #spotify {
-	background: url(../img/lorde.jpg) no-repeat center top;
+	background: url(../images/lorde.jpg) no-repeat center top;
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
@@ -1362,7 +1370,7 @@ PANELS CONFIGURATIONS
 
 /* BLOG PANEL */
 #blog-bg {
-	background: url(../img/blog-bg.jpg) no-repeat center top;
+	background: url(../images/blog-bg.jpg) no-repeat center top;
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
@@ -1485,10 +1493,93 @@ PANELS CONFIGURATIONS
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpinHLMhgEHKADia0xQThIQs6JJ9gPxZhYQAcS6QHwDiI8hSYJAC0gBPxDLAvFcIJ6JJJkDxFNBVtgBcQ8Qa6BLghgwN4A4a9ElQYAFSj8C4mwg3o8sCQIAAQYA78QTYqnPZuEAAAAASUVORK5CYII=') no-repeat center center;
 }
 
+body{margin:40px;}
+
+
+.btn-grey {
+    color: #fff;
+    background-color: #444444;
+    border-color: #333333;
+}
+
+.btn-grey:hover,
+.btn-grey:focus,
+.btn-grey:active,
+.btn-grey.active,
+.open > .dropdown-toggle.btn-grey {
+    color: #fff;
+    background-color: #444444;
+    border-color: #333333;
+}
+
+.btn-grey:active,
+.btn-grey.active,
+.open > .dropdown-toggle.btn-grey {
+    background-image: none;
+}
+
+.btn-grey.disabled,
+.btn-grey[disabled],
+fieldset[disabled] .btn-grey,
+.btn-grey.disabled:hover,
+.btn-grey[disabled]:hover,
+fieldset[disabled] .btn-grey:hover,
+.btn-grey.disabled:focus,
+.btn-grey[disabled]:focus,
+fieldset[disabled] .btn-grey:focus,
+.btn-grey.disabled:active,
+.btn-grey[disabled]:active,
+fieldset[disabled] .btn-grey:active,
+.btn-grey.disabled.active,
+.btn-grey[disabled].active,
+fieldset[disabled] .btn-grey.active {
+    background-color: #444444;
+    border-color: #333333;
+}
+
+.btn-grey .badge {
+    color: #444444;
+    background-color: #fff;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 16px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+.btn-circle.btn-vl {
+    width: 128px;
+    height: 128px;
+    padding: 32px 32px;
+    font-size: 48px;
+    line-height: 1.33;
+    border-radius: 70px;
+}
+
 /* PROFILE PANELS */
 /* Profile 01*/
 #profile-01 {
-	background: url(../img/profile-01.jpg) no-repeat center top;
+	background: url(../images/profile-01.jpg) no-repeat center top;
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
@@ -1536,7 +1627,7 @@ PANELS CONFIGURATIONS
 
 /* Profile 02*/
 #profile-02 {
-	background: url(../img/profile-02.jpg) no-repeat center top;
+	background: url(../images/profile-02.jpg) no-repeat center top;
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
@@ -1696,7 +1787,7 @@ PANELS CONFIGURATIONS
 
 .project:hover .photo-wrapper {
   background-color: #68dff0;
-	background-image:url(../img/zoom.png);
+	background-image:url(../images/zoom.png);
 	background-repeat:no-repeat;
 	background-position:center;
 	top: 0;
@@ -1792,8 +1883,8 @@ label {
     position: relative;
     text-align: left;
     width: 80px;
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    -webkit-mask: url('../images/mask.png') 0 0 no-repeat;
+    mask: url('../images/mask.png') 0 0 no-repeat;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1899,8 +1990,8 @@ label {
 .switch-square {
     border-radius: 6px;
     -webkit-border-radius: 6px;
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-    mask: url('../img/mask.png') 0 0 no-repeat;
+    -webkit-mask: url('../images/mask.png') 0 0 no-repeat;
+    mask: url('../images/mask.png') 0 0 no-repeat;
 }
 .switch-square > div.switch-off label {
     border-color: #7f8c9a;

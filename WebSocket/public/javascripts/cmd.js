@@ -9,7 +9,7 @@ $(document).ready(function(){
             sensor: 'gpio',
             command: 'off'
         };
-
+        console.log('btn_off_gpio');
         $.ajax({
             method: 'POST',
             data: {data: JSON.stringify(dataToBack)},
@@ -34,5 +34,13 @@ $(document).ready(function(){
                 console.log(res);
             }
         })
+    })
+
+    $('#aircondition_add').click(()=>{
+        console.log('Air condition add button.');
+    })
+
+    $('#aircondition_minus').click(()=>{
+        console.log('Air condition minus button.');
     })
 })
