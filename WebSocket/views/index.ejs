@@ -1,6 +1,6 @@
 <% include layout %>
 
-<script src="/javascripts/cmd.js" xmlns:height="http://www.w3.org/1999/xhtml"></script>
+<script src="/javascripts/cmd.js"></script>
 
 
 <section id="main-content">
@@ -18,16 +18,31 @@
                             </div>
                             <div class="row"></div>
                             <div id="send" class="row mt">
-                                        <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2">
-                                            <button id="btn_off_gpio" type="button"
-                                                    class="btn btn-grey btn-circle btn-xl">OFF
-                                            </button>
-                                        </div>
-                                        <div class="col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2">
-                                            <button id="btn_on_gpio" type="button"
-                                                    class="btn btn-grey btn-circle btn-xl">ON
-                                            </button>
-                                        </div>
+
+                                <div class="col-md-3  col-sm-3 ">
+                                    <button id="btn_on_gpio1" type="button"
+                                            class="btn btn-grey btn-circle btn-xl">0
+                                    </button>
+                                </div>
+
+                                <div class="col-md-3  col-sm-3 ">
+                                    <button id="btn_off_gpio1" type="button"
+                                            class="btn btn-grey btn-circle btn-xl">1
+                                    </button>
+                                </div>
+
+                                <div class="col-md-3  col-sm-3 ">
+                                    <button id="btn_on_gpio2" type="button"
+                                            class="btn btn-grey btn-circle btn-xl">0
+                                    </button>
+                                </div>
+                                
+                                <div class="col-md-3  col-sm-3 ">
+                                    <button id="btn_off_gpio2" type="button"
+                                            class="btn btn-grey btn-circle btn-xl">2
+                                    </button>
+                                </div>
+
                             </div>
                             <canvas id="serverstatus02" height="50" width="120"></canvas>
                             <footer>
@@ -48,25 +63,30 @@
                                 <h5>Air-Condition Control Panel</h5>
                             </div>
                             <div id="send" class="row mt">
-                                    <button type="button" class="btn btn-grey btn-circle btn-lg">开</button>
+                                <button type="button" class="btn btn-grey btn-circle btn-lg" id="aircondition_sw">开
+                                </button>
                             </div>
                             <div class="row mt">
                                 <div class="col-xs-6 col-sm-6">
-                                    <button type="button" class="btn btn-grey btn-circle btn-xl">+</button>
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl" id="aircondition_add">
+                                        +
+                                    </button>
                                 </div>
                                 <div class="col-xs-6 col-sm-6">
-                                    <button type="button" class="btn btn-grey btn-circle btn-xl">-</button>
+                                    <button type="button" class="btn btn-grey btn-circle btn-xl"
+                                            id="aircondition_minus">-
+                                    </button>
                                 </div>
                             </div>
                             <footer>
                                 <div class="pull-left">
-                                    <h5><i class="fa fa-th"></i>  Temperature</h5>
+                                    <h5><i class="fa fa-th"></i> Temperature</h5>
                                 </div>
                                 <div class="pull-right">
                                     <h5>27</h5>
                                 </div>
                             </footer>
-                         </div><!--/grey-panel -->
+                        </div><!--/grey-panel -->
                     </div><!-- /col-md-4-->
                 </div><!-- /row -->
 
@@ -90,7 +110,7 @@
                             </div>
                             <footer>
                                 <div class="pull-left">
-                                    <h5><i class="glyphicon glyphicon-signal "></i>  TV Channel</h5>
+                                    <h5><i class="glyphicon glyphicon-signal "></i> TV Channel</h5>
                                 </div>
                                 <div class="pull-right">
                                     <h5>60</h5>
@@ -110,14 +130,14 @@
 
 
                     <!--<div class="col-md-6 mb">-->
-                        <!--&lt;!&ndash; INSTAGRAM PANEL &ndash;&gt;-->
-                        <!--<div class="instagram-panel pn">-->
-                            <!--<i class="fa fa-instagram fa-4x"></i>-->
-                            <!--<p>@THISISYOU<br/>-->
-                                <!--5 min. ago-->
-                            <!--</p>-->
-                            <!--<p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>-->
-                        <!--</div>-->
+                    <!--&lt;!&ndash; INSTAGRAM PANEL &ndash;&gt;-->
+                    <!--<div class="instagram-panel pn">-->
+                    <!--<i class="fa fa-instagram fa-4x"></i>-->
+                    <!--<p>@THISISYOU<br/>-->
+                    <!--5 min. ago-->
+                    <!--</p>-->
+                    <!--<p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>-->
+                    <!--</div>-->
                     <!--</div>&lt;!&ndash; /col-md-4 &ndash;&gt;-->
 
                     <!--<div class="col-md-4 col-sm-4 mb">-->
